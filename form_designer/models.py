@@ -294,9 +294,12 @@ class FormDefinitionField(models.Model):
 
 class FormLog(models.Model):
     form_definition = models.ForeignKey(FormDefinition, related_name='logs')
-    created = models.DateTimeField(_('Created'), auto_now=True)
+    created = models.DateTimeField(_('Created'), auto_now=True, db_index=True)
     created_by = models.ForeignKey(User, null=True, blank=True)
     _data = None
+
+    class Meta:
+        ordering = ('-created', )
 
     def __unicode__(self):
         return "%s (%s)" % (self.form_definition.title or  \
