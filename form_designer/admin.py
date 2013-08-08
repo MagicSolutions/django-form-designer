@@ -20,7 +20,7 @@ class FormDefinitionFieldInline(admin.StackedInline):
         (_('Text'), {'fields': ['max_length', 'min_length']}),
         (_('Numbers'), {'fields': ['max_value', 'min_value', 'max_digits', 'decimal_places']}),
         (_('Regex'), {'fields': ['regex']}),
-        (_('Choices'), {'fields': ['choice_values', 'choice_labels']}),
+        (_('Choices'), {'fields': ['choice_values', 'choice_labels', 'choice_empty_label']}),
         (_('Model Choices'), {'fields': ['choice_model', 'choice_model_empty_label']}),
     ]
 

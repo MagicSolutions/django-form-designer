@@ -185,6 +185,7 @@ class FormDefinitionField(models.Model):
     initial = models.TextField(_('initial value'), blank=True, null=True)
     help_text = models.CharField(_('help text'), max_length=255, blank=True, null=True)
 
+    choice_empty_label = models.CharField(_('empty label'), max_length=255, blank=True, null=True)
     choice_values = models.TextField(_('values'), help_text=_('One value per line'), blank=True, null=True)
     choice_labels = models.TextField(_('labels'), help_text=_('One label per line'), blank=True, null=True)
 
@@ -258,6 +259,8 @@ class FormDefinitionField(models.Model):
                     except IndexError:
                         label = value
                     choices.append((value, label))
+                if self.choice_empty_label:
+                    choices.insert(0, ('', self.choice_empty_label))
                 args.update({
                     'choices': tuple(choices)
                 })
