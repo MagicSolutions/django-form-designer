@@ -248,14 +248,14 @@ class FormDefinitionField(models.Model):
 
         if self.field_class in ('django.forms.ChoiceField', 'django.forms.MultipleChoiceField'):
             if self.choice_values:
+                values = (self.choice_values or '').splitlines()
+                labels = (self.choice_labels or '').splitlines()
+                
                 choices = []
-                regex = re.compile('[\s]*\n[\s]*')
-                values = regex.split(self.choice_values)
-                labels = regex.split(self.choice_labels) if self.choice_labels else []
                 for index, value in enumerate(values):
                     try:
                         label = labels[index]
-                    except:
+                    except IndexError:
                         label = value
                     choices.append((value, label))
                 args.update({
