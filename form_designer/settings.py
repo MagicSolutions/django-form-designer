@@ -31,6 +31,7 @@ WIDGET_CLASSES = getattr(settings, 'FORM_DESIGNER_WIDGET_CLASSES', (
     ('django.forms.widgets.PasswordInput', _('Password input')),
     ('django.forms.widgets.HiddenInput', _('Hidden input')),
     ('django.forms.widgets.RadioSelect', _('Radio button')),
+    ('django.forms.widgets.CheckboxSelectMultiple', _('Checkboxes select')),
 ))
 
 EXPORTER_CLASSES = getattr(settings, 'FORM_DESIGNER_EXPORTER_CLASSES', (
