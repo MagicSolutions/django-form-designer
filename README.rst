@@ -95,6 +95,13 @@ Using Django Form Designer with Django CMS
 
 You can now add forms to pages created with Django CMS. 
 
+Email Headers
+=====================
+
+In order to add custom header in the emails, sent from the form designer, 
+you can use the FORM_DESIGNER_EMAIL_HEADER setting in your settings.py::
+
+    FORM_DESIGNER_EMAIL_HEADER = 'X-Category'
 
 Optional requirements
 =====================

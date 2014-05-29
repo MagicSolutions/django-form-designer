@@ -154,7 +154,13 @@ class FormDefinition(models.Model):
             mail_subject = self.title
 
         from django.core.mail import EmailMessage
-        message = EmailMessage(mail_subject, message, mail_from or None, mail_to)
+        message = EmailMessage(
+            mail_subject,
+            message,
+            mail_from or None,
+            mail_to,
+            headers={settings.EMAIL_HEADER: self.name} if settings.EMAIL_HEADER else {}
+            )
 
         if self.mail_uploaded_files:
             for file_path in files:
