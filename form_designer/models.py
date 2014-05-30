@@ -300,6 +300,9 @@ class FormLog(models.Model):
 
     class Meta:
         ordering = ('-created', )
+        verbose_name = _('Form Log')
+        verbose_name_plural = _('Form logs')
+
 
     def __unicode__(self):
         return "%s (%s)" % (self.form_definition.title or  \
