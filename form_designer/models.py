@@ -189,7 +189,7 @@ class FormDefinitionField(models.Model):
     include_result = models.BooleanField(_('include in result'), help_text=('If this is disabled, the field value will not be included in logs and e-mails generated from form data.'), default=True)
     widget = models.CharField(_('widget'), default='', choices=settings.WIDGET_CLASSES, max_length=255, blank=True, null=True)
     initial = models.TextField(_('initial value'), blank=True, null=True)
-    help_text = models.CharField(_('help text'), max_length=255, blank=True, null=True)
+    help_text = models.TextField(_('help text'), blank=True, null=True)
 
     choice_empty_label = models.CharField(_('empty label'), max_length=255, blank=True, null=True)
     choice_values = models.TextField(_('values'), help_text=_('One value per line'), blank=True, null=True)
