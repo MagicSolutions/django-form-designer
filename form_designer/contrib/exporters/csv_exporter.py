@@ -1,9 +1,10 @@
+import csv
+
 from form_designer.contrib.exporters import FormLogExporterBase
 from form_designer import settings
-from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
+from django.utils.encoding import smart_str
 
-import csv
 
 class CsvExporter(FormLogExporterBase):
 
@@ -17,7 +18,7 @@ class CsvExporter(FormLogExporterBase):
     def init_response(self):
         self.response = HttpResponse(mimetype='text/csv')
         self.response['Content-Disposition'] = 'attachment; filename=%s.csv' %  \
-            unicode(self.model._meta.verbose_name_plural)
+            smart_str(self.model._meta.verbose_name_plural)
 
     def writerow(self, row):
         self.writer.writerow(row)

@@ -1,8 +1,7 @@
 from form_designer.contrib.exporters import FormLogExporterBase
 from form_designer import settings
-from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_str, smart_unicode
 
 try:
     import xlwt
@@ -23,14 +22,14 @@ class XlsExporter(FormLogExporterBase):
         return XLWT_INSTALLED 
 
     def init_writer(self):
-        self.wb = xlwt.Workbook()
-        self.ws = self.wb.add_sheet(unicode(self.model._meta.verbose_name_plural))
+        self.wb = xlwt.Workbook(encoding="UTF-8")
+        self.ws = self.wb.add_sheet(smart_str(self.model._meta.verbose_name_plural))
         self.rownum = 0
 
     def init_response(self):
         self.response = HttpResponse(mimetype='application/ms-excel')
         self.response['Content-Disposition'] = 'attachment; filename=%s.xls' %  \
-            unicode(self.model._meta.verbose_name_plural)
+            smart_str(self.model._meta.verbose_name_plural)
 
     def writerow(self, row):
         for i, f in enumerate(row):
